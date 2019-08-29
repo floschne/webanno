@@ -223,8 +223,7 @@ public class CurationPanel
                 setEnabled(state.getDocument() != null && !documentService
                         .getSourceDocument(state.getDocument().getProject(),
                                 state.getDocument().getName())
-                        .getState().equals(SourceDocumentState.CURATION_FINISHED)
-                        && !state.getPreferences().isShowCodebook());
+                        .getState().equals(SourceDocumentState.CURATION_FINISHED));
             }
             
             @Override
@@ -536,46 +535,25 @@ public class CurationPanel
     }
 
     public void decideSideBarSetup(AjaxRequestTarget aTarget) {
-        if (getModelObject().getState().getPreferences().isShowCodebook()) {
-            codebookCurationPanel.getParent().add(new AttributeModifier("style", getVStyle(0.05)));
-            aTarget.add(codebookCurationPanel.getParent());
+        //TODO change method name since  there is nothing to decide anymore
+        codebooksuggestionPanel.getParent().add(new AttributeModifier("style", hidden()));
+        aTarget.add(codebooksuggestionPanel.getParent());
 
-            codebooksuggestionPanel.getParent().add(new AttributeModifier("style", visible()));
-            aTarget.add(codebooksuggestionPanel.getParent());
+        codebookCurationPanel.getParent().add(new AttributeModifier("style", hidden()));
+        aTarget.add(codebookCurationPanel.getParent());
 
-            editor.getParent().add(new AttributeModifier("style", hidden()));
-            aTarget.add(editor.getParent());
+        editor.getParent().add(new AttributeModifier("style", getVStyle(0.025)));
+        aTarget.add(editor.getParent());
 
-            sentencesListViewCon.add(new AttributeModifier("style", hidden()));
-            aTarget.add(sentencesListViewCon);
+        sentencesListViewCon.add(new AttributeModifier("style", visible()));
+        aTarget.add(sentencesListViewCon);
 
-            suggestionViewPanel.add(new AttributeModifier("style", hidden()));
-            aTarget.add(suggestionViewPanel);
+        suggestionViewPanel.add(new AttributeModifier("style", visible()));
+        aTarget.add(suggestionViewPanel);
 
-            crossSentAnnoViewCon.add(new AttributeModifier("style", hidden()));
-            aTarget.add(crossSentAnnoViewCon);
+        crossSentAnnoViewCon.add(new AttributeModifier("style", visible()));
+        aTarget.add(crossSentAnnoViewCon);
 
-        } else {
-
-            codebooksuggestionPanel.getParent().add(new AttributeModifier("style", hidden()));
-            aTarget.add(codebooksuggestionPanel.getParent());
-
-            codebookCurationPanel.getParent().add(new AttributeModifier("style", hidden()));
-            aTarget.add(codebookCurationPanel.getParent());
-
-            editor.getParent().add(new AttributeModifier("style", getVStyle(0.025)));
-            aTarget.add(editor.getParent());
-
-            sentencesListViewCon.add(new AttributeModifier("style", visible()));
-            aTarget.add(sentencesListViewCon);
-
-            suggestionViewPanel.add(new AttributeModifier("style", visible()));
-            aTarget.add(suggestionViewPanel);
-
-            crossSentAnnoViewCon.add(new AttributeModifier("style", visible()));
-            aTarget.add(crossSentAnnoViewCon);
-
-        }
     }
 
     private String hidden() {

@@ -147,9 +147,7 @@ public class AnnotationPreferencesDialogContent
 
         form.add(new LambdaAjaxButton<>("save", this::actionSave));
         form.add(new LambdaAjaxLink("cancel", this::actionCancel));
-        
-        // show codebook?
-        form. add(new CheckBox("showCodebook"));
+
         WebMarkupContainer showEditorCont = new WebMarkupContainer("showEditorCont");
         showEditorCont.add(new AttributeModifier("style", 
                 stateModel.getObject().getMode().getName().equals(Mode.ANNOTATION.getName())
@@ -182,8 +180,7 @@ public class AnnotationPreferencesDialogContent
             prefs.setColorPerLayer(model.colorPerLayer);
             prefs.setReadonlyLayerColoringBehaviour(model.readonlyLayerColoringBehaviour);
             prefs.setEditor(model.editor.getKey());
-            
-            prefs.setShowCodebook(model.showCodebook);
+
             prefs.setShowEditor(model.showEditor);
             prefs.setCodebooksPerPage(model.codebooksPerPage);
 
@@ -239,7 +236,6 @@ public class AnnotationPreferencesDialogContent
                 .collect(Collectors.toList());
 
         model.codebooksPerPage = prefs.getCodebooksPerPage();
-        model.showCodebook = prefs.isShowCodebook();
         model.showEditor = prefs.isShowEditor();
         
         return model;
@@ -309,7 +305,6 @@ public class AnnotationPreferencesDialogContent
         private Map<Long, ColoringStrategyType> colorPerLayer;
         
         private int codebooksPerPage;
-        private boolean showCodebook;
         private boolean showEditor;
     }
 }

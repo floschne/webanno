@@ -48,7 +48,6 @@ public class AnnotationPreference
     
     public static final int CODEBOOKS_PER_PAGE = 12;
     private int codebooksPerPage ;
-    private boolean showCodebook = false;
     private boolean showEditor = true;
     
     // Id of annotation layers, to be stored in the properties file comma separated: 12, 34,....
@@ -257,14 +256,6 @@ public class AnnotationPreference
     {
         return defaultLayer;
     }
-    public boolean isShowCodebook() {
-        return showCodebook;
-    }
-
-    public void setShowCodebook(boolean aShowCodebook) {
-        this.showCodebook = aShowCodebook;
-    }
-    
     
     public boolean isShowEditor() {
         return showEditor;
